@@ -1,0 +1,80 @@
+﻿@model ControleVenda.MVC.Models.VendaModel
+
+<div>
+    <h4>VendaModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Codigo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Codigo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataHora)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataHora)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+
+    </dl>
+
+    
+</div>
+<div>
+    <table class="col-md-10 table-striped">
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Valor unitário</th>
+                <th>Valor total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.VendaItems)
+            {
+                <tr>
+                    <td>@item.Produto.Nome</td>
+                    <td>@item.Quantidade</td>
+                    <td>R$ @item.ValorUnitario</td>
+                    <td>R$ @item.ValorTotal</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th>@Html.DisplayFor(model => model.QuantidadeTotal)</th>
+                <th></th>
+                <th>R$ @Html.DisplayFor(model => model.Total)</th>
+            </tr>
+        </tfoot>
+    </table>
+
+</div>
+
+<div style="clear:both"></div>
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

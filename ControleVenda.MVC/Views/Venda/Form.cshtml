@@ -1,0 +1,152 @@
+﻿@model ControleVenda.MVC.Models.VendaModel
+
+
+
+@using (Html.BeginForm("Save", "Venda"))
+{
+    @Html.AntiForgeryToken()
+
+
+
+
+    
+    <div class="form-horizontal">
+        <h4>VendaModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Codigo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Codigo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Codigo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DataHora, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @DateTime.Today.ToString("dd/MM/yyyy hh:mm")
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ClienteId, htmlAttributes: new { @class = "control-label col-md-2" })
+
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ClienteId, (SelectList)ViewBag.Clientes, "", new { @class = "form-control max-width-100" })
+                <span class="text-danger field-validation-error" data-valmsg-for="Customer" data-valmsg-replace="true">
+                    <span for="Customer" id="customerValidataionMessage" class=""></span>
+                </span>
+            </div>
+        </div>
+
+        <h1>Produtos</h1>
+        <label for="q">Procurar produto:</label><input type="text" id="q" name="q" />
+        <div>
+            <table>
+                <thead>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Valor</th>
+                    <th>Valor total</th>
+                </thead>
+                <tbody id="produtos">
+
+                </tbody>
+                <tfoot>
+                    <th></th>
+                    <th id="resumeQuantidade">0</th>
+                    <th></th>
+                    <th id="resumeTotal">R$ 0,00</th>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script type="text/javascript" language="javascript">
+
+    $(document).ready(function () {
+        $('#q').autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("SearchProduto")?q=' + request.term,
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.produto,
+                                value: item.id
+                            }
+                        }));
+                    }
+                })
+            },
+            select: function (event, ui) {
+                console.log(event);
+                console.log(ui);
+
+                index = $('#produtos').find('tr').length;
+
+                html = '<tr>' +
+                    '<td>' + ui.item.label + '</td>' +
+                    '<td><input type="text" name="Produto['+index+'][Quantidade]" onchange="calcular(this)" /></td>' +
+                    '<td><input type="text" name="Produto[' + index + '][Valor]" onchange="calcular(this)" />' +
+                    '<input type="hidden" name="Produto[' + index +'][Id]" value="'+ui.item.id+'" /></td>' +
+                    '<td>R$ 0,00</td>' +
+                    '</tr>';
+
+                $('#produtos').append(html);
+            },
+            open: function () {
+                $(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+            },
+            close: function () {
+                $(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+            }
+        });
+    })
+
+    function calcular(obj) {
+        campos = $(obj).parent().parent().find('input');
+        colunas = $(obj).parent().parent().find('td');
+
+        valorQuantidade = $(campos[0]).val();
+        valorValorUnitario = $(campos[1]).val();
+
+        colunaTotal = $(colunas[3]);
+
+        if (valorQuantidade != '' && valorValorUnitario != '') {
+            valorTotal = parseInt(valorQuantidade) * parseFloat(valorValorUnitario);
+            colunaTotal.html('R$ ' + valorTotal);
+        } else {
+            colunaTotal.html('R$ 0,00');
+        }
+
+        resumeQtd = 0;
+        resumeTotal = 0;
+
+        $('#produtos').find('tr').each(function (i, item) {
+            tdQtd = $($(item).find('td')[1]).find('input').val();
+            tdTotal = $($(item).find('td')[3]).html();
+
+            resumeQtd += parseInt(tdQtd);
+            resumeTotal += parseFloat(tdTotal.replace("R$ ", ""));
+
+            console.log(tdQtd);
+
+            $('#resumeQuantidade').html(resumeQtd);
+            $('#resumeTotal').html('R$ ' + resumeTotal);
+
+        });
+    }
+</script>

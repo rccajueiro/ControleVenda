@@ -1,0 +1,12 @@
+C:\Users\Ricardo\Documents\Projects\Prima\ControleVenda\ControleVenda.Engine\obj\Debug\netstandard2.0\ControleVenda.Engine.csprojAssemblyReference.cache
+C:\Users\Ricardo\Documents\Projects\Prima\ControleVenda\ControleVenda.Engine\obj\Debug\netstandard2.0\ControleVenda.Engine.csproj.CoreCompileInputs.cache
+C:\Users\Ricardo\Documents\Projects\Prima\ControleVenda\ControleVenda.Engine\obj\Debug\netstandard2.0\ControleVenda.Engine.AssemblyInfoInputs.cache
+C:\Users\Ricardo\Documents\Projects\Prima\ControleVenda\ControleVenda.Engine\obj\Debug\netstandard2.0\ControleVenda.Engine.AssemblyInfo.cs
+C:\Users\Ricardo\Documents\Projects\Prima\ControleVenda\ControleVenda.Engine\bin\Debug\netstandard2.0\ControleVenda.Engine.deps.json
+C:\Users\Ricardo\Documents\Projects\Prima\ControleVenda\ControleVenda.Engine\bin\Debug\netstandard2.0\ControleVenda.Engine.dll
+C:\Users\Ricardo\Documents\Projects\Prima\ControleVenda\ControleVenda.Engine\bin\Debug\netstandard2.0\ControleVenda.Engine.pdb
+C:\Users\Ricardo\Documents\Projects\Prima\ControleVenda\ControleVenda.Engine\bin\Debug\netstandard2.0\ControleVenda.Util.dll
+C:\Users\Ricardo\Documents\Projects\Prima\ControleVenda\ControleVenda.Engine\bin\Debug\netstandard2.0\ControleVenda.Util.pdb
+C:\Users\Ricardo\Documents\Projects\Prima\ControleVenda\ControleVenda.Engine\obj\Debug\netstandard2.0\ControleVenda.Engine.csproj.CopyComplete
+C:\Users\Ricardo\Documents\Projects\Prima\ControleVenda\ControleVenda.Engine\obj\Debug\netstandard2.0\ControleVenda.Engine.dll
+C:\Users\Ricardo\Documents\Projects\Prima\ControleVenda\ControleVenda.Engine\obj\Debug\netstandard2.0\ControleVenda.Engine.pdb
